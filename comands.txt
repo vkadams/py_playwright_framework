@@ -1,0 +1,248 @@
+1. Basic Runs
+# Run all tests (uses all pytest.ini defaults)
+py -m pytest
+
+# Run with verbose output
+py -m pytest -v
+
+# Run with extra verbose (shows each step)
+py -m pytest -vv
+
+# Run with short traceback on failure
+py -m pytest --tb=short
+
+# Run with full traceback on failure
+py -m pytest --tb=long
+
+# Run with no traceback
+py -m pytest --tb=no
+
+# Quiet mode (minimal output)
+py -m pytest -q
+
+# Show print statements in real-time
+py -m pytest -s
+
+
+2. Browser Options
+# Run on Chromium (default)
+py -m pytest --my-browser=chromium
+
+# Run on Firefox
+py -m pytest --my-browser=firefox
+
+# Run on WebKit (Safari engine)
+py -m pytest --my-browser=webkit
+
+# Headed mode (visible browser — default from your ini)
+py -m pytest --my-headed
+
+# Headless mode (no browser window)
+py -m pytest --no-my-headed
+
+
+3. Base URL Options
+# Default URL (tutorialsninja)
+py -m pytest --my-base-url=https://tutorialsninja.com/demo/
+
+# Local environment
+py -m pytest --my-base-url=http://localhost/opencart/upload/
+
+# Naveen's OpenCart
+py -m pytest --my-base-url=https://naveenautomationlabs.com/opencart
+
+# Any custom URL
+py -m pytest --my-base-url=https://your-staging-site.com
+
+
+4. Video Recording
+# Record video, keep only on failure (default)
+py -m pytest --my-video=retain-on-failure
+
+# Record video for ALL tests
+py -m pytest --my-video=on
+
+# Disable video recording
+py -m pytest --my-video=off
+
+
+5. Screenshot Options
+# Screenshot only on failure (default)
+py -m pytest --my-screenshot=only-on-failure
+
+# Screenshot for ALL tests
+py -m pytest --my-screenshot=on
+
+# Disable screenshots
+py -m pytest --my-screenshot=off
+
+
+6. Tracing Options
+# Trace only on failure (default)
+py -m pytest --my-tracing=retain-on-failure
+
+# Trace ALL tests
+py -m pytest --my-tracing=on
+
+# Disable tracing
+py -m pytest --my-tracing=off
+
+# View a saved trace after the run
+playwright show-trace reports/traces/test_user_registration_trace.zip
+
+
+7. Running by Markers
+# Sanity tests only
+py -m pytest -m "sanity"
+
+# Regression tests only
+py -m pytest -m "regression"
+
+# Data-driven tests only
+py -m pytest -m "datadriven"
+
+# End-to-end tests only
+py -m pytest -m "end_to_end"
+
+# Sanity OR regression
+py -m pytest -m "sanity or regression"
+
+# Sanity AND regression (tests with both markers)
+py -m pytest -m "sanity and regression"
+
+# Everything EXCEPT sanity
+py -m pytest -m "not sanity"
+
+# Regression but NOT sanity
+py -m pytest -m "regression and not sanity"
+
+# Run ALL tests (no marker filter)
+py -m pytest -m ""
+
+
+8. Running Specific Tests
+# Specific test file
+py -m pytest tests/test_user_registration.py
+
+# Specific test function
+py -m pytest tests/test_user_registration.py::test_user_registration
+
+# Tests matching a keyword
+py -m pytest -k "registration"
+
+# Tests matching multiple keywords
+py -m pytest -k "registration or login"
+
+# Exclude tests by keyword
+py -m pytest -k "not registration"
+
+# Combine keyword + marker
+py -m pytest -k "registration" -m "sanity"
+
+# Specific test directory
+py -m pytest tests/
+
+# Multiple test files
+py -m pytest tests/test_login.py tests/test_search.py
+
+
+9. Parallel Execution (requires pytest-xdist)
+# Run with 2 parallel workers
+py -m pytest -n 2
+
+# Run with 4 parallel workers
+py -m pytest -n 4
+
+# Auto-detect CPU cores
+py -m pytest -n auto
+
+# Parallel + specific marker
+py -m pytest -n 2 -m "regression"
+
+
+10. Flaky Test Retries (requires pytest-rerunfailures)
+# Retry failed tests 2 times
+py -m pytest --reruns 2
+
+# Retry with 2-second delay between attempts
+py -m pytest --reruns 2 --reruns-delay 2
+
+# Retry 3 times with 5-second delay
+py -m pytest --reruns 3 --reruns-delay 5
+
+
+11. Reports
+# HTML report (auto-generated from your ini)
+py -m pytest --html=reports/myreport.html --self-contained-html
+
+# Allure results (auto-generated from your ini)
+py -m pytest --alluredir=reports/allure-results
+
+# Generate + open Allure report after run
+py -m pytest
+allure serve reports/allure-results
+
+# Generate static Allure report
+allure generate reports/allure-results -o reports/allure-report --clean
+allure open reports/allure-report
+
+
+12. Debugging & Troubleshooting
+# Stop on first failure
+py -m pytest -x
+
+# Stop after 3 failures
+py -m pytest --maxfail=3
+
+# Drop into debugger on failure
+py -m pytest --pdb
+
+# Show local variables in traceback
+py -m pytest --showlocals
+
+# List all collected tests (dry run — no execution)
+py -m pytest --co
+
+# Show available markers
+py -m pytest --markers
+
+# Show available fixtures
+py -m pytest --fixtures
+
+# Show installed plugins
+py -m pytest --version
+
+
+13. Override pytest.ini Defaults
+# Ignore all addopts from pytest.ini (clean slate)
+py -m pytest -o "addopts="
+
+# Override a specific ini setting
+py -m pytest -o "addopts=-v --my-browser=firefox --no-my-headed"
+
+
+14. Combined Real-World Examples
+# Quick sanity check — headless, no video, stop on first fail
+py -m pytest -m "sanity" --no-my-headed --my-video=off -x
+
+# Full regression — Firefox, record everything, parallel
+py -m pytest -m "regression" --my-browser=firefox --my-video=on --my-screenshot=on --my-tracing=on -n 4
+
+# Debug a failing test — headed, full tracing, stop on fail, show locals
+py -m pytest tests/test_user_registration.py -x --pdb --showlocals --my-tracing=on
+
+# CI/CD pipeline — headless, retry flaky, all reports
+py -m pytest --no-my-headed --reruns 2 --reruns-delay 2 --my-video=retain-on-failure --my-screenshot=only-on-failure
+
+# Staging environment — different URL, webkit, record everything
+py -m pytest --my-base-url=https://staging.example.com --my-browser=webkit --my-video=on --my-screenshot=on
+
+# Smoke test on all 3 browsers (run one after another)
+py -m pytest -m "sanity" --my-browser=chromium
+py -m pytest -m "sanity" --my-browser=firefox
+py -m pytest -m "sanity" --my-browser=webkit
+
+
+Note taht all the dependencies are in requirements.txt -- this is like pom.xml in java
+to run these the command is-
+pip install -r requirements.txt
