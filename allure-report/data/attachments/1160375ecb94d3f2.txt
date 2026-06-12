@@ -1,0 +1,9 @@
+[OK] Starting browser: chromium
+[OK] Headless mode: False (headed=True)
+[INFO] Navigating to: https://tutorialsninja.com/demo/
+[TRACE] Tracing enabled - capturing screenshots and actions
+[RESULT] Test 'test_user_registration' result: [PASS]
+[SAVE] Trace saved: reports/traces/test_user_registration_trace.zip
+[CLEANUP] Page closed (video file finalized)
+[CLEANUP] Deleted video for passed test: C:\Users\61015706\OneDrive - LTIMindtree\Documents\PY\PY_Framework\reports\videos\page@7cecc23e8855db24a06c1bf5e564dbf7.webm
+[CLEANUP] Closing browser context and stopping Playwright...

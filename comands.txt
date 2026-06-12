@@ -246,3 +246,84 @@ py -m pytest -m "sanity" --my-browser=webkit
 Note taht all the dependencies are in requirements.txt -- this is like pom.xml in java
 to run these the command is-
 pip install -r requirements.txt
+
+
+
+Jenkins setup-
+Java prerequisite
+download jenkins war file
+
+java -jar jenkins.war
+if java is older veriosn then use this--
+& "C:\Program Files\Zulu\zulu-23\bin\java.exe" -jar jenkins.war --enable-future-java
+admin/admin
+
+configure jenkins--
+plugins --- install required plugins
+allure jenkins plugin
+git client plugin
+git plugin
+github api plugin
+github plugin
+pipeline: github groovy libraries
+pipeline
+
+Tools ---
+githut path
+allure path
+
+3 ways to run in jenkins--
+1 ********how to run local project in jenkins
+cd /d %WORKSPACE%
+
+dir venv\Scripts
+
+call venv\Scripts\activate
+
+pip install -r requirements.txt
+
+if exist reports\allure-results (
+    rmdir /s /q reports\allure-results
+)
+
+python -m pytest tests ^
+-m "sanity" ^
+--alluredir=reports/allure-results ^
+-v
+
+2 ********how to run github project in jenkins
+cd /d %WORKSPACE%
+
+py -m venv venv
+
+venv\Scripts\python -m pip install --upgrade pip
+
+venv\Scripts\python -m pip install -r requirements.txt
+
+venv\Scripts\python -m playwright install
+
+if exist reports\allure-results (
+    rmdir /s /q reports\allure-results
+)
+
+venv\Scripts\python -m pytest tests ^
+-m "sanity" ^
+--alluredir=reports/allure-results ^
+-v
+
+3 ********how we can create pipeline
+pipeline is sequence of actions-- or stages
+1 checkout the code
+2 setup python environment
+3 install dependencies
+4 clean old reports
+5 run tests
+6 publish allure report
+
+
+Running inside githuh using github actions
+
+
+
+
+

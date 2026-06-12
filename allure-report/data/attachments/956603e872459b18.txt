@@ -1,0 +1,9 @@
+[OK] Starting browser: chromium
+[OK] Headless mode: False (headed=True)
+[INFO] Navigating to: https://tutorialsninja.com/demo/
+[TRACE] Tracing enabled - capturing screenshots and actions
+[RESULT] Test 'test_invalid_login' result: [PASS]
+[SAVE] Trace saved: reports/traces/test_invalid_login_trace.zip
+[CLEANUP] Page closed (video file finalized)
+[CLEANUP] Deleted video for passed test: C:\Users\61015706\OneDrive - LTIMindtree\Documents\PY\PY_Framework\reports\videos\page@ecc4e169584377cda4afba400115ed1d.webm
+[CLEANUP] Closing browser context and stopping Playwright...

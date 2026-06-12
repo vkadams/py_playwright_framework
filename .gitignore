@@ -1,1 +1,84 @@
+# -----------------------------
+# Python basics
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc.*
+*.egg
+*.egg-info/
+dist/
+build/
+
+# -----------------------------
+# Virtual Environment (CRITICAL)
+# -----------------------------
+venv/
+.venv/
+env/
+
+# -----------------------------
+# IDE / Editor files
+# -----------------------------
+.idea/
+.vscode/
+*.iml
+
+# -----------------------------
+# OS files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Logs & temp files
+# -----------------------------
+*.log
+*.tmp
+*.temp
+
+# -----------------------------
+# Pytest
+# -----------------------------
+.pytest_cache/
+.cache/
+
+# -----------------------------
+# Playwright
+# -----------------------------
+# Browser binaries (large, auto-installed)
+ms-playwright/
+
+# Playwright traces/videos/screenshots (if generated)
+test-results/
+playwright-report/
+
+# -----------------------------
+# Reports (your framework folder)
+# -----------------------------
 reports/
+
+# -----------------------------
+# Environment variables / secrets
+# -----------------------------
+.env
+.env.*
+
+# -----------------------------
+# Coverage reports
+# -----------------------------
+htmlcov/
+.coverage
+.coverage.*
+
+# -----------------------------
+# Jupyter (if ever used)
+# -----------------------------
+.ipynb_checkpoints/
+
+# -----------------------------
+# Misc
+# -----------------------------
+*.sqlite3
+*.db
